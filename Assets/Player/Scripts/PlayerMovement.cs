@@ -12,13 +12,24 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
     private bool crouch = false;
 
+    private float startDelay = 0.25f;
+
     void Start()
     {
         controller = GetComponent<CharacterController2D>();
+        jump = false;
+        crouch = false;
+        speed = 40f;
     }
 
     private void Update()
     {
+        while (startDelay > 0)
+        {
+            startDelay -= Time.deltaTime;
+            return;
+        }
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
         if (Input.GetButtonDown("Jump"))
@@ -34,6 +45,16 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+
+        if (Input.GetButton("Sprint"))
+        {
+            speed = 60f;
+        }
+        else
+        {
+            speed = 40f;
+        }
+
     }
 
     void FixedUpdate()

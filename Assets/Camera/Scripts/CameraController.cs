@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
     private bool startPanning = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = FindObjectOfType<PlayerMovement>().gameObject.transform;
+        //target = FindObjectOfType<PlayerMovement>().gameObject.transform;
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, target.position) > 2.5f)
+        if (Vector3.Distance(transform.position, target.position) > 2f)
         {
             startPanning = true;
         }
